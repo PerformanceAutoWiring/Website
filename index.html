@@ -3,8 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Performance Auto Wiring — East Gippsland's specialist in custom wiring looms, aftermarket ECU installs, motorsport and performance vehicle electrics. Haltech, Link, MoTeC, and more.">
-  <title>Performance Auto Wiring | Custom Looms & Motorsport Electrics | East Gippsland</title>
+  <title>Performance Auto Wiring | Custom Wiring Looms & ECU Installs | East Gippsland VIC</title>
+  <meta name="description" content="East Gippsland's specialist auto electrician for custom wiring looms, aftermarket ECU installation (Haltech, Link, MoTeC), and motorsport electrics. Drift, drag, circuit and performance builds. Call 0449 761 118.">
+  <meta name="keywords" content="custom wiring loom, auto electrician East Gippsland, Haltech install, Link ECU wiring, MoTeC wiring, motorsport electrician Victoria, performance wiring, ECU install Bairnsdale, drift car wiring, drag car electrics, engine bay rewire Gippsland">
+  <link rel="canonical" href="https://www.performanceautowiring.com.au/">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.performanceautowiring.com.au/">
+  <meta property="og:title" content="Performance Auto Wiring | Custom Looms & ECU Installs | East Gippsland">
+  <meta property="og:description" content="Trade-qualified auto electrician specialising in custom wiring looms, Haltech, Link and MoTeC ECU installs, and motorsport electrical builds across East Gippsland VIC.">
+  <meta property="og:locale" content="en_AU">
+
+  <!-- Schema: Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "AutoRepair",
+    "name": "Performance Auto Wiring",
+    "description": "Specialist auto electrician for custom wiring looms, aftermarket ECU installation, and motorsport electrical builds.",
+    "url": "https://www.performanceautowiring.com.au",
+    "telephone": "+61449761118",
+    "email": "James@performanceautowiring.com.au",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "VIC",
+      "addressCountry": "AU",
+      "addressLocality": "East Gippsland"
+    },
+    "areaServed": [
+      "East Gippsland", "Bairnsdale", "Lakes Entrance", "Sale", "Orbost", "Paynesville", "Victoria"
+    ],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Auto Electrical Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Wiring Looms" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Haltech ECU Installation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Link ECU Installation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "MoTeC ECU Installation" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Motorsport Wiring" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "4WD Electrical Fitouts" } }
+      ]
+    }
+  }
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet">
@@ -47,22 +90,9 @@
       pointer-events: none;
       z-index: 998;
       opacity: 0.025;
-      background-image: url('images/hero-bg.webp');
-      background-size: cover;
-      background-position: center top;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
       background-size: 180px;
     }
-
-    .hero-bg {
-  position: absolute;
-  inset: 0;
-  background-image: url('images/hero-bg.webp');
-  background-size: cover;
-  background-position: center top;
-  background-repeat: no-repeat;
-  filter: brightness(0.35) saturate(0.6);
-  z-index: 0;
-}
 
     /* ─── NAV ─── */
     nav {
@@ -106,6 +136,14 @@
     }
     .nav-links a:hover { color: var(--white); }
 
+    .nav-insta {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      transition: color 0.2s;
+    }
+    .nav-insta:hover { color: var(--white); }
+
     .nav-call {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.82rem;
@@ -129,6 +167,32 @@
       align-items: center;
       position: relative;
       overflow: hidden;
+    }
+
+    /* ── HERO BG IMAGE ──
+       When you have a photo, replace the gradient below with:
+       background-image: url('images/hero-bg.jpg');
+       Keep everything else the same.
+    */
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('images/hero-bg.webp');
+      background-size: cover;
+      background-position: center top;
+      background-repeat: no-repeat;
+      filter: brightness(0.35) saturate(0.6);
+      z-index: 0;
+    }
+
+    /* dark vignette over the bg so text stays readable */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 50%, transparent 20%, rgba(8,8,8,0.6) 70%),
+        linear-gradient(to right, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.75) 100%);
     }
 
     /* diagonal stripe texture */
@@ -758,6 +822,155 @@
       letter-spacing: 0.05em;
     }
 
+    /* ─── GALLERY ─── */
+    #gallery { background: var(--black); }
+
+    .gallery-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .carousel-wrap { position: relative; }
+
+    .carousel {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--border);
+    }
+
+    .carousel-slide {
+      display: none;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+    }
+    .carousel-slide.active { display: grid; }
+
+    .gallery-item {
+      position: relative;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+      background: var(--panel);
+      cursor: pointer;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+      filter: brightness(0.85);
+    }
+    .gallery-item:hover img { transform: scale(1.04); filter: brightness(1); }
+
+    .gallery-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      background: var(--panel);
+    }
+    .gallery-placeholder svg { color: var(--border2); }
+    .gallery-placeholder-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .gallery-item-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 0.7rem 1rem;
+      background: linear-gradient(transparent, rgba(0,0,0,0.85));
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--light);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-item-caption { opacity: 1; }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.2rem;
+    }
+    .carousel-btn {
+      width: 38px; height: 38px;
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      color: var(--light);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .carousel-btn:hover { background: var(--red); border-color: var(--red); color: var(--white); }
+
+    .carousel-dots { display: flex; gap: 0.5rem; align-items: center; }
+    .carousel-dot {
+      width: 20px; height: 2px;
+      background: var(--border2);
+      cursor: pointer;
+      transition: background 0.2s, width 0.2s;
+    }
+    .carousel-dot.active { background: var(--red); width: 32px; }
+
+    .carousel-counter {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      margin-left: auto;
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.95);
+      z-index: 500;
+      align-items: center;
+      justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img { max-width: 90vw; max-height: 88vh; object-fit: contain; }
+    .lightbox-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      width: 40px; height: 40px;
+      background: var(--panel);
+      border: 1px solid var(--border2);
+      color: var(--light);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: background 0.2s;
+    }
+    .lightbox-close:hover { background: var(--red); }
+    .lightbox-caption {
+      position: absolute;
+      bottom: 1.5rem;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 768px) { .carousel-slide.active { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 480px) { .carousel-slide.active { grid-template-columns: 1fr; } }
+
     /* ─── ANIMATIONS ─── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
@@ -813,8 +1026,12 @@
     <li><a href="#looms">Looms</a></li>
     <li><a href="#ecu">ECU & Systems</a></li>
     <li><a href="#builds">Build Types</a></li>
+    <li><a href="#gallery">Our Work</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a href="https://www.instagram.com/performanceautowiring/" target="_blank" rel="noopener" class="nav-insta" aria-label="Instagram">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+  </a>
   <a href="tel:0449761118" class="nav-call">0449 761 118</a>
   <div class="hamburger" id="hamburger" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -823,6 +1040,7 @@
 
 <!-- HERO -->
 <section id="hero">
+  <div class="hero-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
@@ -841,7 +1059,7 @@
       </p>
       <div class="hero-actions">
         <a href="tel:0449761118" class="btn-red">Call 0449 761 118</a>
-        <a href="#looms" class="btn-ghost">Our Work</a>
+        <a href="#gallery" class="btn-ghost">Our Work</a>
       </div>
     </div>
 
@@ -1060,6 +1278,7 @@
         <ul class="build-items">
           <li>Engine swap looms (SR20, RB, 2JZ, LS)</li>
           <li>Aftermarket ECU + fly-by-wire</li>
+          <li>Hydraulic handbrake circuits</li>
           <li>Sequential gearbox wiring</li>
           <li>PDM setups</li>
         </ul>
@@ -1104,6 +1323,129 @@
   </div>
 </section>
 
+<!-- OUR WORK / GALLERY -->
+<section id="gallery">
+  <div class="container">
+    <div class="gallery-header">
+      <div>
+        <div class="eyebrow">The Work</div>
+        <h2 class="section-h">OUR WORK</h2>
+      </div>
+      <a href="#contact" class="btn-ghost">Start Your Build</a>
+    </div>
+
+    <div class="carousel-wrap reveal">
+      <div class="carousel" id="carousel">
+
+        <!-- SLIDE 1 -->
+        <div class="carousel-slide active">
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <!-- Replace src with your image: <img src="images/build-01.jpg" alt="Custom engine bay loom SR20 drift car"> -->
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-01.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Engine Bay Loom — SR20 Drift Build</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-02.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Haltech Elite 2500 Install</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-03.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Motorsport Loom — Circuit Car</div>
+          </div>
+        </div>
+
+        <!-- SLIDE 2 -->
+        <div class="carousel-slide">
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-04.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Link G4X Wire-In — 2JZ Swap</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-05.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Boost Control & Sensor Wiring</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-06.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Drag Car — Battery Relocation & PDM</div>
+          </div>
+        </div>
+
+        <!-- SLIDE 3 -->
+        <div class="carousel-slide">
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-07.jpg</div>
+            </div>
+            <div class="gallery-item-caption">4WD Dual Battery & Solar Install</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-08.jpg</div>
+            </div>
+            <div class="gallery-item-caption">MoTeC M130 Track Car</div>
+          </div>
+          <div class="gallery-item" onclick="openLightbox(this)">
+            <div class="gallery-placeholder">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+              <div class="gallery-placeholder-label">Add your photo here<br>images/build-09.jpg</div>
+            </div>
+            <div class="gallery-item-caption">Clean Canopy 12V Fitout</div>
+          </div>
+        </div>
+
+      </div><!-- /carousel -->
+
+      <div class="carousel-controls">
+        <button class="carousel-btn" onclick="carouselPrev()" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        </button>
+        <button class="carousel-btn" onclick="carouselNext()" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+        <div class="carousel-dots" id="carouselDots"></div>
+        <div class="carousel-counter" id="carouselCounter">1 / 3</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+      <p style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--muted); letter-spacing:0.1em;">
+        // More photos and work-in-progress on Instagram
+      </p>
+      <a href="https://www.instagram.com/performanceautowiring/" target="_blank" rel="noopener" style="font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--red); letter-spacing:0.1em; text-decoration:none; display:flex; align-items:center; gap:0.5rem; transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--red)'">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @performanceautowiring →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <div class="lightbox-close" onclick="closeLightbox()">✕</div>
+  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+
 <!-- ALSO DO -->
 <section id="also">
   <div class="container">
@@ -1138,6 +1480,28 @@
         <div class="also-title">General Auto Electrical</div>
         <div class="also-desc">Alternators, starters, charging systems, batteries, general fault finding across all vehicle types — domestic and commercial.</div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM CTA -->
+<section id="instagram" style="background:var(--panel); border-top:1px solid var(--border); border-bottom:1px solid var(--border); padding:3rem 2rem;">
+  <div class="container">
+    <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:2rem;">
+      <div style="display:flex; align-items:center; gap:1.5rem;">
+        <div style="width:56px; height:56px; border:1px solid var(--border2); display:flex; align-items:center; justify-content:center; color:var(--white); flex-shrink:0;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </div>
+        <div>
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.68rem; color:var(--red); letter-spacing:0.2em; text-transform:uppercase; margin-bottom:0.3rem;">// Follow the builds</div>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:1.8rem; letter-spacing:0.05em; color:var(--white); line-height:1;">@performanceautowiring</div>
+          <div style="font-family:'Barlow',sans-serif; font-size:0.85rem; font-weight:300; color:var(--muted); margin-top:0.3rem;">Behind the scenes — looms, ECU installs, and builds in progress on Instagram.</div>
+        </div>
+      </div>
+      <a href="https://www.instagram.com/performanceautowiring/" target="_blank" rel="noopener" style="font-family:'Bebas Neue',sans-serif; font-size:1rem; letter-spacing:0.12em; color:var(--white); border:1px solid var(--border2); padding:0.75rem 2rem; text-decoration:none; display:inline-flex; align-items:center; gap:0.6rem; transition:border-color 0.2s, color 0.2s; white-space:nowrap;" onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'" onmouseout="this.style.borderColor='var(--border2)';this.style.color='var(--white)'">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        Follow on Instagram
+      </a>
     </div>
   </div>
 </section>
@@ -1246,6 +1610,10 @@
   <div class="footer-inner">
     <a href="#" class="footer-logo">PERFORMANCE<span class="slash">/</span>AUTO WIRING</a>
     <div class="footer-copy">© 2025 Performance Auto Wiring · East Gippsland VIC</div>
+    <a href="https://www.instagram.com/performanceautowiring/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:0.5rem;font-family:'Share Tech Mono',monospace;font-size:0.68rem;color:var(--muted);text-decoration:none;letter-spacing:0.08em;transition:color 0.2s;" onmouseover="this.style.color='var(--white)'" onmouseout="this.style.color='var(--muted)'">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.5"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      @performanceautowiring
+    </a>
     <div class="footer-abn">Trade Qualified Auto Electrician</div>
   </div>
 </footer>
@@ -1267,6 +1635,49 @@
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // Carousel
+  let currentSlide = 0;
+  const slides = document.querySelectorAll('.carousel-slide');
+  const dotsContainer = document.getElementById('carouselDots');
+  const counter = document.getElementById('carouselCounter');
+  const total = slides.length;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.onclick = () => goToSlide(i);
+    dotsContainer.appendChild(dot);
+  });
+
+  function goToSlide(n) {
+    slides[currentSlide].classList.remove('active');
+    dotsContainer.children[currentSlide].classList.remove('active');
+    currentSlide = (n + total) % total;
+    slides[currentSlide].classList.add('active');
+    dotsContainer.children[currentSlide].classList.add('active');
+    counter.textContent = `${currentSlide + 1} / ${total}`;
+  }
+  function carouselNext() { goToSlide(currentSlide + 1); }
+  function carouselPrev() { goToSlide(currentSlide - 1); }
+
+  // Lightbox
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    if (!img) return; // no-op on placeholders
+    const caption = el.querySelector('.gallery-item-caption');
+    document.getElementById('lightboxImg').src = img.src;
+    document.getElementById('lightboxImg').alt = img.alt;
+    document.getElementById('lightboxCaption').textContent = caption ? caption.textContent : '';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
   function handleSubmit(e) {
     e.preventDefault();
