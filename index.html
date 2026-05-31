@@ -175,25 +175,23 @@
        Keep everything else the same.
     */
     .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('images/hero-bg.webp');
-      background-size: cover;
-      background-position: right top;
-      background-repeat: no-repeat;
-      filter: brightness(0.35) saturate(0.6);
-      z-index: 0;
-    }
+  position: absolute;
+  inset: 0;
+  background-image: url('images/hero-bg.webp');
+  background-size: cover;
+  background-position: right center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  z-index: 0;
+}
 
     /* dark vignette over the bg so text stays readable */
     .hero-bg::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 30% 50%, transparent 20%, rgba(8,8,8,0.6) 70%),
-        linear-gradient(to right, rgba(8,8,8,0.2) 0%, rgba(8,8,8,0.75) 100%);
-    }
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.65);
+}
 
     /* diagonal stripe texture */
     #hero::before {
