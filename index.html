@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Performance Auto Wiring — East Gippsland's specialist in custom wiring looms, aftermarket ECU installs, motorsport and performance vehicle electrics. Haltech, Link, MoTeC, and more.">
+  <title>Performance Auto Wiring | Custom Looms & Motorsport Electrics | East Gippsland</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;1,300&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:   #080808;
+      --dark:    #0e0e0e;
+      --panel:   #141414;
+      --panel2:  #1a1a1a;
+      --border:  #252525;
+      --border2: #333333;
+      --muted:   #666666;
+      --mid:     #888888;
+      --light:   #b8b8b8;
+      --white:   #efefef;
+      --red:     #d4231e;
+      --red-dim: #8a1510;
+      --red-glow:rgba(212,35,30,0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--light);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* grain */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 998;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 180px;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 200;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      background: rgba(8,8,8,0.95);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      text-decoration: none;
+      line-height: 1;
+    }
+    .nav-logo .slash { color: var(--red); margin: 0 0.1em; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-call {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.82rem;
+      color: var(--red);
+      text-decoration: none;
+      border: 1px solid var(--red-dim);
+      padding: 0.45rem 1rem;
+      letter-spacing: 0.06em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-call:hover { background: var(--red); color: var(--white); }
+
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
+    .hamburger span { display:block; width:22px; height:2px; background:var(--light); transition:all 0.3s; }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      padding-top: 60px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* diagonal stripe texture */
+    #hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        -55deg,
+        transparent,
+        transparent 40px,
+        rgba(255,255,255,0.012) 40px,
+        rgba(255,255,255,0.012) 41px
+      );
+      pointer-events: none;
+    }
+
+    /* red glow bl */
+    .hero-glow {
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(212,35,30,0.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    /* red glow tr */
+    .hero-glow2 {
+      position: absolute;
+      top: -10%;
+      right: -15%;
+      width: 50vw;
+      height: 50vw;
+      background: radial-gradient(circle, rgba(212,35,30,0.04) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 5rem 2rem 6rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-left {}
+
+    .hero-tag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--red);
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s ease forwards;
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 28px;
+      height: 1px;
+      background: var(--red);
+    }
+
+    h1.hero-h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4.5rem, 11vw, 10rem);
+      line-height: 0.88;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      text-transform: uppercase;
+      margin-bottom: 1.8rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.22s ease forwards;
+    }
+    h1.hero-h1 .red { color: var(--red); }
+    h1.hero-h1 .outline {
+      -webkit-text-stroke: 1px rgba(255,255,255,0.25);
+      color: transparent;
+    }
+
+    .hero-body {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.75;
+      max-width: 440px;
+      margin-bottom: 2.2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.36s ease forwards;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.48s ease forwards;
+    }
+
+    .btn-red {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: var(--white);
+      background: var(--red);
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-red:hover { background: #e8302a; transform: translateY(-1px); }
+
+    .btn-ghost {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.12em;
+      color: var(--light);
+      border: 1px solid var(--border2);
+      padding: 0.75rem 2rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s, transform 0.15s;
+    }
+    .btn-ghost:hover { border-color: var(--red); color: var(--red); transform: translateY(-1px); }
+
+    /* hero right — spec panel */
+    .hero-panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.55s ease forwards;
+    }
+    .panel-title {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 1.4rem;
+    }
+    .spec-list { list-style: none; display: flex; flex-direction: column; }
+    .spec-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--border);
+      gap: 1rem;
+    }
+    .spec-item:last-child { border-bottom: none; }
+    .spec-key {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.06em;
+      flex-shrink: 0;
+    }
+    .spec-val {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 0.82rem;
+      color: var(--white);
+      text-align: right;
+    }
+    .spec-dot {
+      width: 6px; height: 6px;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+
+    /* ─── SECTION BASE ─── */
+    section { padding: 5.5rem 2rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    .eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .eyebrow::before { content:'//'; color: var(--red-dim); }
+
+    .section-h {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 0.95;
+      margin-bottom: 0.3rem;
+    }
+
+    /* ─── CUSTOM LOOMS ─── */
+    #looms { background: var(--dark); }
+
+    .looms-intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+      margin-bottom: 4rem;
+    }
+    .looms-body {
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-top: 1.5rem;
+    }
+    .looms-body p + p { margin-top: 1rem; }
+
+    .looms-callout {
+      background: var(--panel);
+      border-left: 3px solid var(--red);
+      padding: 1.8rem 2rem;
+    }
+    .callout-quote {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+    }
+    .callout-quote span { color: var(--red); }
+    .callout-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.55rem;
+    }
+    .callout-list li {
+      font-size: 0.85rem;
+      font-weight: 400;
+      color: var(--light);
+      display: flex;
+      align-items: baseline;
+      gap: 0.6rem;
+    }
+    .callout-list li::before {
+      content: '→';
+      color: var(--red);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    /* loom types grid */
+    .looms-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+    .loom-card {
+      background: var(--panel);
+      padding: 1.8rem 1.6rem;
+      position: relative;
+      transition: background 0.2s;
+    }
+    .loom-card:hover { background: var(--panel2); }
+    .loom-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 3.5rem;
+      color: var(--border2);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .loom-card:hover .loom-num { color: var(--red-dim); }
+    .loom-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.35rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .loom-desc {
+      font-size: 0.83rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ─── ECU / SYSTEMS ─── */
+    #ecu { background: var(--black); position: relative; overflow: hidden; }
+    #ecu::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -15%;
+      width: 55vw; height: 55vw;
+      background: radial-gradient(circle, rgba(212,35,30,0.05) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .ecu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+
+    .ecu-card {
+      background: var(--panel);
+      padding: 2rem 1.8rem;
+      border-top: 2px solid transparent;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .ecu-card:hover { background: var(--panel2); border-top-color: var(--red); }
+
+    .ecu-brand {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      letter-spacing: 0.06em;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .ecu-tagline {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--red);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .ecu-desc {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1.2rem;
+    }
+    .ecu-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem;
+    }
+    .etag {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--muted);
+      border: 1px solid var(--border2);
+      padding: 0.18rem 0.5rem;
+      letter-spacing: 0.06em;
+    }
+    .ecu-card:hover .etag { border-color: var(--red-dim); color: var(--light); }
+
+    /* sensors row */
+    .sensors-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 1px;
+    }
+    .sensor-cell {
+      background: var(--panel);
+      padding: 1.2rem 1.4rem;
+      transition: background 0.2s;
+    }
+    .sensor-cell:hover { background: var(--panel2); }
+    .sensor-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.2rem;
+    }
+    .sensor-sub {
+      font-size: 0.75rem;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    /* ─── BUILD TYPES ─── */
+    #builds { background: var(--dark); }
+
+    .builds-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .builds-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .build-card {
+      background: var(--panel);
+      padding: 2rem 1.5rem 1.8rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s;
+      cursor: default;
+    }
+    .build-card:hover { background: var(--panel2); }
+
+    .build-type-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.6rem;
+    }
+    .build-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.9rem;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .build-items {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+    }
+    .build-items li {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      display: flex;
+      align-items: baseline;
+      gap: 0.5rem;
+    }
+    .build-items li::before {
+      content: '·';
+      color: var(--red-dim);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── ALSO DO ─── */
+    #also { background: var(--black); }
+
+    .also-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      margin-top: 3rem;
+    }
+    .also-card {
+      background: var(--panel);
+      padding: 1.6rem 1.5rem;
+      transition: background 0.2s;
+    }
+    .also-card:hover { background: var(--panel2); }
+    .also-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.05em;
+      color: var(--white);
+      margin-bottom: 0.35rem;
+    }
+    .also-desc {
+      font-size: 0.8rem;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--dark); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3.5rem;
+      align-items: start;
+    }
+
+    .contact-left {}
+
+    .contact-blurb {
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 2rem;
+    }
+
+    .contact-details { display: flex; flex-direction: column; gap: 1.2rem; }
+    .c-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    .c-icon {
+      width: 38px; height: 38px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--red);
+      flex-shrink: 0;
+    }
+    .c-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 0.1rem;
+    }
+    .c-value {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+    .c-value:hover { color: var(--red); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 0.9rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+    .form-group label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 400;
+      padding: 0.7rem 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--red); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: var(--border2); }
+    .form-group select option { background: var(--panel); }
+
+    .form-submit {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.14em;
+      color: var(--white);
+      background: var(--red);
+      border: none;
+      padding: 0.8rem 2rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      align-self: flex-start;
+    }
+    .form-submit:hover { background: #e8302a; }
+
+    .form-note {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--panel);
+      border-top: 1px solid var(--border);
+      padding: 1.8rem 2rem;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-logo .slash { color: var(--red); }
+    .footer-copy, .footer-abn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--muted);
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── MOBILE ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .hero-panel { display: none; }
+      .looms-intro { grid-template-columns: 1fr; gap: 2.5rem; }
+      .looms-grid { grid-template-columns: 1fr 1fr; }
+      .builds-grid { grid-template-columns: 1fr 1fr; }
+      .ecu-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 1rem; }
+      .nav-links, .nav-call { display: none; }
+      .hamburger { display: flex; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 60px; left: 0; right: 0;
+        background: var(--dark);
+        border-bottom: 1px solid var(--border);
+        padding: 1.5rem;
+        gap: 1.5rem;
+        z-index: 199;
+      }
+      section { padding: 4rem 1rem; }
+      .looms-grid { grid-template-columns: 1fr; }
+      .builds-grid { grid-template-columns: 1fr 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      h1.hero-h1 { font-size: clamp(3.8rem, 14vw, 6rem); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">PERFORMANCE<span class="slash">/</span>AUTO WIRING</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#looms">Looms</a></li>
+    <li><a href="#ecu">ECU & Systems</a></li>
+    <li><a href="#builds">Build Types</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="tel:0449761118" class="nav-call">0449 761 118</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-tag">East Gippsland, VIC &nbsp;·&nbsp; Custom Loom Specialist</div>
+      <h1 class="hero-h1">
+        CUSTOM<br>
+        <span class="red">WIRING</span><br>
+        <span class="outline">LOOMS</span>
+      </h1>
+      <p class="hero-body">
+        Trade-qualified auto electrician specialising in custom wiring looms, 
+        aftermarket ECU installation, and full electrical builds for performance, 
+        motorsport, and modified vehicles. Drift. Drag. Circuit. Track days. 
+        Weekenders. If it's got an engine and ambition, we wire it.
+      </p>
+      <div class="hero-actions">
+        <a href="tel:0449761118" class="btn-red">Call 0449 761 118</a>
+        <a href="#looms" class="btn-ghost">Our Work</a>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <div class="panel-title">// Capabilities</div>
+      <ul class="spec-list">
+        <li class="spec-item">
+          <span class="spec-key">ECU Install</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Haltech / Link / MoTeC</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Looms</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Full Custom Build</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Sensors</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Combined MAP / Temp / Lambda</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Boost Control</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Solenoid + Controller Wiring</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Dash / Logger</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Racepak / AIM / Ecumaster</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Fleet / 4WD</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">Also Available</span>
+        </li>
+        <li class="spec-item">
+          <span class="spec-key">Location</span>
+          <div class="spec-dot"></div>
+          <span class="spec-val">East Gippsland, VIC</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CUSTOM LOOMS -->
+<section id="looms">
+  <div class="container">
+    <div class="looms-intro">
+      <div class="reveal">
+        <div class="eyebrow">Core Speciality</div>
+        <h2 class="section-h">CUSTOM<br>WIRING LOOMS</h2>
+        <div class="looms-body">
+          <p>
+            A proper custom loom is the foundation of any serious build. Not a factory loom hacked 
+            apart with scotch locks and hope — a purpose-built harness designed for the engine, 
+            the ECU, and the chassis it's actually going into.
+          </p>
+          <p>
+            Every loom we build is engineered from scratch: correct wire gauge for every circuit, 
+            mil-spec or Raychem DR25 sleeving, Deutsch DT/DTM connectors where they matter, 
+            and fully labelled so you or your tuner can actually work on it later.
+          </p>
+          <p>
+            Whether it's a full engine bay rewire, a plug-and-play ECU swap harness, or a 
+            stripped-back motorsport loom, we build it right the first time.
+          </p>
+        </div>
+      </div>
+      <div class="looms-callout reveal">
+        <div class="callout-quote">Not zip ties and<br><span>hope.</span></div>
+        <ul class="callout-list">
+          <li>Correct gauge wire for every circuit — no undersizing</li>
+          <li>Deutsch DT / DTM / Superseal connectors</li>
+          <li>DR25 / Raychem sleeving on motorsport builds</li>
+          <li>Fully documented and labelled</li>
+          <li>Built to survive heat, vibration, and abuse</li>
+          <li>Tuner-friendly — easy to diagnose and modify</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="looms-grid">
+      <div class="loom-card reveal">
+        <div class="loom-num">01</div>
+        <div class="loom-title">Engine Bay Looms</div>
+        <div class="loom-desc">Full engine harness builds from scratch or complete refactors of factory looms. Suited to engine swaps, stripped builds, or anything the factory never intended.</div>
+      </div>
+      <div class="loom-card reveal">
+        <div class="loom-num">02</div>
+        <div class="loom-title">ECU Conversion Harnesses</div>
+        <div class="loom-desc">Plug-and-play adapter looms between factory chassis connectors and aftermarket ECUs. Haltech, Link, MoTeC, Adaptronic — we'll make it bolt in cleanly.</div>
+      </div>
+      <div class="loom-card reveal">
+        <div class="loom-num">03</div>
+        <div class="loom-title">Motorsport / Stripped Builds</div>
+        <div class="loom-desc">Lightweight, stripped looms for race and track cars. No dead weight — only the circuits you need, sleeved properly and routed cleanly through the cage.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ECU & SYSTEMS -->
+<section id="ecu">
+  <div class="container">
+    <div class="eyebrow reveal">Aftermarket ECU & Electronics</div>
+    <h2 class="section-h reveal">ECU INSTALLS<br>& SYSTEMS</h2>
+
+    <div class="ecu-grid">
+
+      <div class="ecu-card reveal">
+        <div class="ecu-brand">Haltech</div>
+        <div class="ecu-tagline">Elite / Nexus / Sport</div>
+        <div class="ecu-desc">Full wiring installs for the Haltech range — Elite 1500/2500, Nexus R5/Uni, and the Sport series. From straightforward engine swaps through to full sequential setups with traction control and flat-shift.</div>
+        <div class="ecu-tags">
+          <span class="etag">Elite 1500/2500</span>
+          <span class="etag">Nexus R5</span>
+          <span class="etag">Sport 2000</span>
+          <span class="etag">CAN Expansion</span>
+          <span class="etag">DBW Throttle</span>
+        </div>
+      </div>
+
+      <div class="ecu-card reveal">
+        <div class="ecu-brand">Link ECU</div>
+        <div class="ecu-tagline">Plug-in & Wire-in</div>
+        <div class="ecu-desc">Link plug-in installs for supported platforms and full wire-in G4X/G4+ builds. Excellent for Japanese platforms — SR20, RB, 2JZ, 4G63, EJ — where plug-in solutions exist and work-in builds don't.</div>
+        <div class="ecu-tags">
+          <span class="etag">G4X Wire-In</span>
+          <span class="etag">Plug-In</span>
+          <span class="etag">SR20 / RB</span>
+          <span class="etag">2JZ / 4G63</span>
+          <span class="etag">CAN Keypad</span>
+        </div>
+      </div>
+
+      <div class="ecu-card reveal">
+        <div class="ecu-brand">MoTeC</div>
+        <div class="ecu-tagline">M1 Series / M130 / M150</div>
+        <div class="ecu-desc">MoTeC wiring installs for club-level through to serious motorsport builds. M1 series, M130/M150 and associated display/logging integration. Clean installs to the standard MoTeC expects.</div>
+        <div class="ecu-tags">
+          <span class="etag">M130 / M150</span>
+          <span class="etag">M1 Series</span>
+          <span class="etag">C125 Dash</span>
+          <span class="etag">PDM15 / PDM30</span>
+          <span class="etag">CAN Bus</span>
+        </div>
+      </div>
+
+      <div class="ecu-card reveal">
+        <div class="ecu-brand">Other Platforms</div>
+        <div class="ecu-tagline">Adaptronic / Emtron / Ecumaster</div>
+        <div class="ecu-desc">Not locked to one brand. Adaptronic, Emtron, Ecumaster EMU Black, AEM Infinity — if it's a legitimate aftermarket ECU, we can wire it. Bring your build, not a brand preference.</div>
+        <div class="ecu-tags">
+          <span class="etag">Adaptronic</span>
+          <span class="etag">Emtron</span>
+          <span class="etag">Ecumaster EMU</span>
+          <span class="etag">AEM Infinity</span>
+          <span class="etag">Microtech</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Sensors -->
+    <div style="margin-top:2.5rem;">
+      <div class="eyebrow reveal" style="margin-bottom:1rem;">Sensors & Peripheral Wiring</div>
+      <div class="sensors-row">
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Combined MAP/Temp</div>
+          <div class="sensor-sub">4-bar, 7-bar, GM-style and modern combined sensors</div>
+        </div>
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Wideband Lambda</div>
+          <div class="sensor-sub">Bosch LSU 4.9, AEM X-Series, Innovate integration</div>
+        </div>
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Boost Controllers</div>
+          <div class="sensor-sub">Turbosmart, Greddy, Haltech boost solenoid wiring</div>
+        </div>
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Oil Pressure / Temp</div>
+          <div class="sensor-sub">Sender selection, correct signal conditioning</div>
+        </div>
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Wheel Speed / ABS</div>
+          <div class="sensor-sub">Hall effect and VR sensor wiring for traction control</div>
+        </div>
+        <div class="sensor-cell reveal">
+          <div class="sensor-name">Dash & Loggers</div>
+          <div class="sensor-sub">AIM, Racepak, MoTeC C-series, Haltech iC-7</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- BUILD TYPES -->
+<section id="builds">
+  <div class="container">
+    <div class="builds-header">
+      <div>
+        <div class="eyebrow">Who We Work With</div>
+        <h2 class="section-h">BUILD TYPES</h2>
+      </div>
+      <a href="#contact" class="btn-ghost">Discuss Your Build</a>
+    </div>
+
+    <div class="builds-grid">
+
+      <div class="build-card reveal">
+        <div class="build-type-label">// Sideways</div>
+        <div class="build-name">DRIFT</div>
+        <ul class="build-items">
+          <li>Engine swap looms (SR20, RB, 2JZ, LS)</li>
+          <li>Aftermarket ECU + fly-by-wire</li>
+          <li>Hydraulic handbrake circuits</li>
+          <li>Sequential gearbox wiring</li>
+          <li>Stripped cabin / PDM setups</li>
+        </ul>
+      </div>
+
+      <div class="build-card reveal">
+        <div class="build-type-label">// Straight Line</div>
+        <div class="build-name">DRAG</div>
+        <ul class="build-items">
+          <li>Big turbo / boost control wiring</li>
+          <li>Nitrous system integration</li>
+          <li>Trans brake / line lock circuits</li>
+          <li>Datalogger and timing system wiring</li>
+          <li>Battery relocation & kill switch</li>
+        </ul>
+      </div>
+
+      <div class="build-card reveal">
+        <div class="build-type-label">// Track</div>
+        <div class="build-name">CIRCUIT</div>
+        <ul class="build-items">
+          <li>Lightweight motorsport looms</li>
+          <li>PDM power distribution</li>
+          <li>ABS / traction control sensor wiring</li>
+          <li>Fire suppression integration</li>
+          <li>Cage-routed, heat-sleeved harness</li>
+        </ul>
+      </div>
+
+      <div class="build-card reveal">
+        <div class="build-type-label">// Weekend Warrior</div>
+        <div class="build-name">STREET /<br>TRACK DAY</div>
+        <ul class="build-items">
+          <li>ECU upgrades on daily-driven cars</li>
+          <li>Sensor additions for tuning</li>
+          <li>Clean engine bay rewires</li>
+          <li>Boost control & gauges</li>
+          <li>Fault-free, rego-friendly builds</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ALSO DO -->
+<section id="also">
+  <div class="container">
+    <div class="eyebrow reveal">Not Just Performance</div>
+    <h2 class="section-h reveal">OTHER SERVICES</h2>
+    <p style="font-size:0.88rem; font-weight:300; color:var(--muted); max-width:500px; margin-top:0.8rem; line-height:1.7;" class="reveal">
+      The performance work is the speciality, but we're a full-service auto electrician. 
+      Anything electrical, we handle it.
+    </p>
+    <div class="also-grid">
+      <div class="also-card reveal">
+        <div class="also-title">4WD & Touring Fitouts</div>
+        <div class="also-desc">Dual battery, lithium, solar, canopy 12V, Anderson plugs, fridge circuits. Built with the same standards as the performance work.</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="also-title">Fleet & Commercial</div>
+        <div class="also-desc">Fleet fitouts, fatigue management systems, camera installs, ongoing electrical maintenance for commercial vehicles and business fleets.</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="also-title">Fault Diagnosis</div>
+        <div class="also-desc">Electrical gremlins, intermittent faults, previous bad installs. Diagnosed properly with the right tools — not guesswork and new parts.</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="also-title">Lighting & Accessories</div>
+        <div class="also-desc">Light bars, spotties, work lights, UHF, dash cams, reversing cameras. Properly wired with correct fusing and tidy looming.</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="also-title">Towing & Trailer</div>
+        <div class="also-desc">Towbar wiring, electric brake controllers, caravan connections, full trailer loom builds.</div>
+      </div>
+      <div class="also-card reveal">
+        <div class="also-title">General Auto Electrical</div>
+        <div class="also-desc">Alternators, starters, charging systems, batteries, general fault finding across all vehicle types — domestic and commercial.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="eyebrow reveal">Get In Touch</div>
+    <h2 class="section-h reveal">DISCUSS<br>YOUR BUILD</h2>
+    <div class="contact-grid">
+
+      <div class="contact-left reveal">
+        <p class="contact-blurb">
+          Based in East Gippsland. Happy to talk through your build before you commit — 
+          what you're trying to achieve, which ECU makes sense, what the loom needs to do. 
+          No hard sell, just straight answers.
+          <br><br>
+          For interstate customers or complex builds, remote consultation is available.
+        </p>
+        <div class="contact-details">
+          <div class="c-row">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13.1a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.26h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.84a16 16 0 0 0 6.29 6.29l1.84-1.84a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="c-label">Phone</div>
+              <a href="tel:0449761118" class="c-value">0449 761 118</a>
+            </div>
+          </div>
+          <div class="c-row">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="c-label">Email</div>
+              <a href="mailto:James@performanceautowiring.com.au" class="c-value" style="font-size:0.88rem;">James@performanceautowiring.com.au</a>
+            </div>
+          </div>
+          <div class="c-row">
+            <div class="c-icon">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <div class="c-label">Location</div>
+              <div class="c-value" style="cursor:default; font-size:0.95rem;">East Gippsland, VIC</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="Your number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label for="service">Build / Service Type</label>
+            <select id="service" name="service">
+              <option value="" disabled selected>What are you after?</option>
+              <option>Custom Wiring Loom</option>
+              <option>ECU Install — Haltech</option>
+              <option>ECU Install — Link</option>
+              <option>ECU Install — MoTeC</option>
+              <option>ECU Install — Other</option>
+              <option>Sensor / Peripheral Wiring</option>
+              <option>Drift Build</option>
+              <option>Drag Build</option>
+              <option>Circuit / Motorsport</option>
+              <option>Street / Track Day Build</option>
+              <option>4WD / Touring Fitout</option>
+              <option>Fleet / Commercial</option>
+              <option>Fault Diagnosis</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell Us About the Build</label>
+            <textarea id="message" name="message" placeholder="Vehicle, engine, ECU you're running or considering, what you need wired..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Enquiry</button>
+          <p class="form-note">// or just call — 0449 761 118</p>
+        </form>
+        <div id="formSuccess" style="display:none; background:var(--panel); border:1px solid var(--red-dim); padding:1.5rem; margin-top:1rem;">
+          <div style="font-family:'Share Tech Mono',monospace; font-size:0.72rem; color:var(--red); letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.4rem;">// Enquiry Received</div>
+          <div style="font-size:0.83rem; color:var(--muted); font-weight:300;">We'll be in touch. If it's urgent, call 0449 761 118.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <a href="#" class="footer-logo">PERFORMANCE<span class="slash">/</span>AUTO WIRING</a>
+    <div class="footer-copy">© 2025 Performance Auto Wiring · East Gippsland VIC</div>
+    <div class="footer-abn">Trade Qualified Auto Electrician</div>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    document.getElementById('navLinks').classList.toggle('open');
+  }
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 55);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const f = e.target;
+    const body = `Name: ${f.name.value}%0APhone: ${f.phone.value}%0AEmail: ${f.email.value}%0AService: ${f.service.value}%0A%0A${f.message.value}`;
+    window.location.href = `mailto:James@performanceautowiring.com.au?subject=Build Enquiry — ${f.name.value}&body=${body}`;
+    f.style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
